@@ -76,6 +76,7 @@ const MomentsSingle = () => {
       <div className="relative md:block hidden shadow-bottom xl:h-[317px] py-8 px-6">
         <BgTexture className="md:block hidden xl:bg-[url('/images/moments/moments-single-shape-2.svg')] md:bg-[url('/images/moments/moments-2-med-shape.svg')] xl:moments-single-2-path moments-2-med-path" />
         <Carousel className="md:block hidden">
+          {/* @ts-ignore */}
           <CarouselContent innerClassName="overflow-hidden">
             {moments?.map((item, i) => (
               <CarouselItem

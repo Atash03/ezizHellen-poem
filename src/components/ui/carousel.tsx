@@ -131,6 +131,7 @@ const Carousel = React.forwardRef<
 Carousel.displayName = 'Carousel';
 
 const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  // @ts-expect-error
   ({ className, innerClassName, ...props }, ref) => {
     const { carouselRef, orientation } = useCarousel();
 

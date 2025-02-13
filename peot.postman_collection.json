@@ -1,0 +1,634 @@
+{
+	"info": {
+		"_postman_id": "acf26315-a342-456c-8415-68b50c75b262",
+		"name": "peot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29865576"
+	},
+	"item": [
+		{
+			"name": "signUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test6@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test12345",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "test12345",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "test2first_name",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "test2username",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://216.250.8.93:7777/app/api/signup",
+					"protocol": "http",
+					"host": [
+						"216",
+						"250",
+						"8",
+						"93"
+					],
+					"port": "7777",
+					"path": [
+						"app",
+						"api",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test12345",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "test2username",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://216.250.8.93:7777/app/api/login",
+					"protocol": "http",
+					"host": [
+						"216",
+						"250",
+						"8",
+						"93"
+					],
+					"port": "7777",
+					"path": [
+						"app",
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refreshToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4LCJpc3MiOiJodHRwOi8vMjE2LjI1MC44LjkzOjc3NzcvYXBwL2FwaS9sb2dpbiIsImlhdCI6MTczMDAyNTgwNiwiZXhwIjoxNzMwMDI5NDA2LCJuYmYiOjE3MzAwMjU4MDYsImp0aSI6Ikd0MnNKcmE2YXpFV3JXVUcifQ.-5dn0hRXKXjSG8qOO1-nGeJzEFmx8jriH8uNfYXKVgI",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://216.250.8.93:7777/app/api/refresh",
+					"protocol": "http",
+					"host": [
+						"216",
+						"250",
+						"8",
+						"93"
+					],
+					"port": "7777",
+					"path": [
+						"app",
+						"api",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserComments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4LCJpc3MiOiJodHRwOi8vMjE2LjI1MC44LjkzOjc3NzcvYXBwL2FwaS9yZWZyZXNoIiwiaWF0IjoxNzMwMDI1ODA2LCJleHAiOjE3MzAwMjk0MjgsIm5iZiI6MTczMDAyNTgyOCwianRpIjoiUjdLVHNlU3JHQkpxdUJqeSJ9.EZV6Lg4sSdS0INL8ihjhtzJASkxHC2G29ojArtl7yDg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://216.250.8.93:7777/app/api/comments",
+					"protocol": "http",
+					"host": [
+						"216",
+						"250",
+						"8",
+						"93"
+					],
+					"port": "7777",
+					"path": [
+						"app",
+						"api",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createComment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4LCJpc3MiOiJodHRwOi8vMjE2LjI1MC44LjkzOjc3NzcvYXBwL2FwaS9yZWZyZXNoIiwiaWF0IjoxNzMwMDI1ODA2LCJleHAiOjE3MzAwMjk0MjgsIm5iZiI6MTczMDAyNTgyOCwianRpIjoiUjdLVHNlU3JHQkpxdUJqeSJ9.EZV6Lg4sSdS0INL8ihjhtzJASkxHC2G29ojArtl7yDg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment_text\": \"This is a new comment\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://216.250.8.93:7777/app/api/comments",
+					"protocol": "http",
+					"host": [
+						"216",
+						"250",
+						"8",
+						"93"
+					],
+					"port": "7777",
+					"path": [
+						"app",
+						"api",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listPoems",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://216.250.8.93:7777/app/api/v1/poems",
+					"protocol": "http",
+					"host": [
+						"216",
+						"250",
+						"8",
+						"93"
+					],
+					"port": "7777",
+					"path": [
+						"app",
+						"api",
+						"v1",
+						"poems"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "ka",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "",
+							"description": "asc, desc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "poemsPinned",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4LCJpc3MiOiJodHRwOi8vMjE2LjI1MC44LjkzOjc3NzcvYXBwL2FwaS9sb2dpbiIsImlhdCI6MTczMDgwMzI4MywiZXhwIjoxNzMwODA2ODgzLCJuYmYiOjE3MzA4MDMyODMsImp0aSI6InJQemNtR2ZOVEt5SWxidHkifQ.PoPbgBAn9Ld7NwPEJfSbs1lLstxUVyM-2aUjxhCZ80g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://216.250.8.93:7777/app/api/poems/pinned",
+					"protocol": "http",
+					"host": [
+						"216",
+						"250",
+						"8",
+						"93"
+					],
+					"port": "7777",
+					"path": [
+						"app",
+						"api",
+						"poems",
+						"pinned"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "poemsPin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4LCJpc3MiOiJodHRwOi8vMjE2LjI1MC44LjkzOjc3NzcvYXBwL2FwaS9sb2dpbiIsImlhdCI6MTczMDgwMzI4MywiZXhwIjoxNzMwODA2ODgzLCJuYmYiOjE3MzA4MDMyODMsImp0aSI6InJQemNtR2ZOVEt5SWxidHkifQ.PoPbgBAn9Ld7NwPEJfSbs1lLstxUVyM-2aUjxhCZ80g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "poem_id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://216.250.8.93:7777/app/api/poems/pin",
+					"protocol": "http",
+					"host": [
+						"216",
+						"250",
+						"8",
+						"93"
+					],
+					"port": "7777",
+					"path": [
+						"app",
+						"api",
+						"poems",
+						"pin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "poemsUnpin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1LCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzMwMTAzODk4LCJleHAiOjE3MzAxMDc0OTgsIm5iZiI6MTczMDEwMzg5OCwianRpIjoiRUpsYU9EZXIxbVpEb0VPeCJ9.2Phyylh-P5VwNkTfSLx8iX7ZHaUnvgwvUFChc2fT8fQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "poem_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://216.250.8.93:7777/app/api/poems/unpin",
+					"protocol": "http",
+					"host": [
+						"216",
+						"250",
+						"8",
+						"93"
+					],
+					"port": "7777",
+					"path": [
+						"app",
+						"api",
+						"poems",
+						"unpin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reviewCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/review_category",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"review_category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/reviews",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"reviews"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "aasdsdsds",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "",
+							"description": "asc, desc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "aboutMe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/about_me",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"about_me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/books",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "moments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/moments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"moments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listContactMe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/contact_me",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"contact_me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postContactMe",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "a",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "b",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "c",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/contact_me",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"contact_me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listComments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://216.250.8.93:7777/app/api/v1/comments",
+					"protocol": "http",
+					"host": [
+						"216",
+						"250",
+						"8",
+						"93"
+					],
+					"port": "7777",
+					"path": [
+						"app",
+						"api",
+						"v1",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "staticWords",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/static_words",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"static_words"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

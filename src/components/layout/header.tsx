@@ -64,22 +64,22 @@ export const socials = [
         />
       </svg>
     ),
-    name: "ezizgeldihellenov",
+    name: "EHellenov99204",
   },
   {
     link: "https://kz.linkedin.com/in/ezizgeldi-hellenov-970a2826",
     icon: <Linkedin className="size-4" />,
-    name: "ezizgeldihellenov",
+    name: "ezizgeldi-hellenov",
   },
   {
     link: "https://www.youtube.com/@EzizHellen2022",
     icon: <Youtube className="size-4" />,
-    name: "ezizgeldihellenov",
+    name: "EzizHellen2022",
   },
   {
     link: "https://www.facebook.com/ezizgeldi.hellenov/",
     icon: <Facebook className="size-4" />,
-    name: "ezizgeldihellenov",
+    name: "ezizgeldi.hellenov",
   },
 ];
 

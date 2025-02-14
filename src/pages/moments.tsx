@@ -1,7 +1,6 @@
 import PageLayout from "@/components/layout/page-layout";
 import MomentsCard from "@/components/shared/moments-card";
 import Pagination from "@/components/shared/pagination";
-import { scrollTop } from "@/lib/utils";
 import { useGetMoments } from "@/query/use-get-moments";
 import { useGetStatic } from "@/query/use-get-static-words";
 import { useState } from "react";
@@ -9,8 +8,6 @@ import { useState } from "react";
 const Moments = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 6;
-
-  scrollTop(currentPage);
 
   const { data: staticData } = useGetStatic(7, "momentsData");
   const { data: moments } = useGetMoments();

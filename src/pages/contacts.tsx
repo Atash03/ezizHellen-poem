@@ -3,10 +3,8 @@ import ContactsForm from '@/components/forms/contacts-form';
 import ContactsLink from '@/components/shared/contacts-link';
 import { BgTexture } from '@/components/shared';
 import { useGetStatic } from '@/query/use-get-static-words';
-import { scrollTop } from '@/lib/utils';
 
 const Contacts = () => {
-  scrollTop();
   const { data } = useGetStatic(14, 'contactsData');
 
   return (

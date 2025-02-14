@@ -20,10 +20,6 @@ const PoemsSingle = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetPoemsSingle(Number(id || 1));
 
-  useEffect(() => {
-    window.scroll({ behavior: "smooth", top: 0 });
-  }, [data]);
-
   const poemId = Number(id);
   const { data: poems } = useGetPoems();
   const { data: pinned, refetch } = useGetPinPoems(token ?? "");

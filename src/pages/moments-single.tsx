@@ -1,9 +1,9 @@
 import PageLayout from "@/components/layout/page-layout";
 import MomentsCard from "@/components/shared/moments-card";
 
-import { cn, scrollTop } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { usePathStore } from "@/store/usePathname";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import {
@@ -15,16 +15,15 @@ import {
 } from "@/components/ui/carousel";
 import { BgTexture } from "@/components/shared";
 import { useGetMomentsSingle } from "@/query/use-get-moments-single";
-import { useGetMoments } from "@/query/use-get-moments";
+import { useImageSrc } from "@/store";
 
 const MomentsSingle = () => {
   const setPath = usePathStore((state) => state.setPath);
+  const ref = useRef<HTMLDialogElement>(null);
+  const { src, setSrc } = useImageSrc();
 
   const { id } = useParams();
   const { data } = useGetMomentsSingle(String(id));
-  const { data: moments } = useGetMoments();
-
-  scrollTop(id);
 
   useEffect(() => {
     setPath("moment");
@@ -32,8 +31,14 @@ const MomentsSingle = () => {
     return () => setPath("");
   }, []);
 
+  useEffect(() => {
+    if (src) {
+      ref.current?.showModal();
+    }
+  }, [src]);
+
   return (
-    <PageLayout title={"Pursatlarag"} className="gap-8">
+    <PageLayout title={"Pursatlar"} className="gap-8">
       <div className="relative w-full xl:h-[504px] md:h-[436px] md:shadow-bottom py-8 md:px-6">
         <BgTexture className="hidden md:block xl:bg-[url('/images/moments/moments-single-shape.svg')] md:bg-[url('/images/moments/main-med-shape.svg')] xl:moments-single-path md:moments-main-med-path" />
 
@@ -46,13 +51,30 @@ const MomentsSingle = () => {
         </Link>
 
         <div className="flex md:flex-row flex-col xl:gap-6 gap-8">
-          <div className="xl:flex-[0_0_675px] md:flex-[0_0_420px] xl:h-[379px] md:h-[235px] md:bg-[#7A590C]/[16%]">
+          <button
+            onClick={() => setSrc(data?.main_image?.path)}
+            className="xl:flex-[0_0_675px] md:flex-[0_0_420px] xl:h-[379px] md:h-[235px] md:bg-[#7A590C]/[16%]"
+          >
             <img
               src={data?.main_image?.path}
               alt="surat"
               className="size-full object-contain"
             />
-          </div>
+          </button>
+
+          <dialog
+            ref={ref}
+            onClick={() => {
+              setSrc(undefined);
+              ref.current?.close();
+            }}
+          >
+            <img
+              src={src}
+              alt="surat"
+              className="w-[70dvw] h-[70dvh] rounded-lg relative z-20 object-cover"
+            />
+          </dialog>
 
           <div className="flex flex-col -tracking-wide justify-between">
             <div>
@@ -73,52 +95,56 @@ const MomentsSingle = () => {
 
       <img src="/images/divider.svg" className="w-full md:hidden" />
 
-      <div className="relative md:block hidden shadow-bottom xl:h-[317px] py-8 px-6">
-        <BgTexture className="md:block hidden xl:bg-[url('/images/moments/moments-single-shape-2.svg')] md:bg-[url('/images/moments/moments-2-med-shape.svg')] xl:moments-single-2-path moments-2-med-path" />
-        <Carousel className="md:block hidden">
-          {/* @ts-ignore */}
-          <CarouselContent innerClassName="overflow-hidden">
-            {moments?.map((item, i) => (
-              <CarouselItem
-                className={cn(
-                  "xl:basis-[372px] md:basis-[352px] !h-[253px] mr-[18px]"
-                )}
-                key={i}
-              >
-                <Link to={`/moments/${item.id}`}>
-                  <MomentsCard
-                    image={item?.main_image?.path}
-                    {...item}
-                    textureNone
-                    id={item.id}
-                    moment_name={data?.moment_name || ""}
-                    className="md:!w-full"
-                  />
-                </Link>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselNext className="hover:opacity-100 hidden xl:flex" />
-          <CarouselPrevious className="hover:opacity-100 hidden xl:flex" />
-        </Carousel>
-      </div>
-
-      <div className="md:hidden flex flex-col gap-[44px]">
-        <div className="flex xl:hidden flex-col gap-4">
-          {moments
-            ?.filter((item) => item.id !== Number(id))
-            ?.map((item, i) => (
-              <MomentsCard
-                image={item?.main_image?.path}
-                {...item}
-                id={item.id}
-                key={i}
-                textureNone
-                className="!p-0"
-              />
-            ))}
+      {data?.images && data?.images.length > 0 && (
+        <div className="relative md:block hidden shadow-bottom xl:h-[317px] py-8 px-6">
+          <BgTexture className="md:block hidden xl:bg-[url('/images/moments/moments-single-shape-2.svg')] md:bg-[url('/images/moments/moments-2-med-shape.svg')] xl:moments-single-2-path moments-2-med-path" />
+          <Carousel className="md:block hidden">
+            {/* @ts-ignore */}
+            <CarouselContent innerClassName="overflow-hidden">
+              {data?.images.length > 0 &&
+                data?.images.map((item, i) => (
+                  <CarouselItem
+                    className={cn(
+                      "xl:basis-[372px] md:basis-[352px] !h-[253px] mr-[18px]"
+                    )}
+                    key={i}
+                  >
+                    <MomentsCard
+                      image={item.path}
+                      {...item}
+                      textureNone
+                      moment_name={data?.moment_name || ""}
+                      className="md:!w-full"
+                      route={false}
+                    />
+                  </CarouselItem>
+                ))}
+            </CarouselContent>
+            <CarouselNext className="hover:opacity-100 hidden xl:flex" />
+            <CarouselPrevious className="hover:opacity-100 hidden xl:flex" />
+          </Carousel>
         </div>
-      </div>
+      )}
+
+      {data?.images && data?.images.length > 0 && (
+        <div className="md:hidden flex flex-col gap-[44px]">
+          <div className="flex xl:hidden flex-col gap-4">
+            {data?.images.length > 0 &&
+              data?.images
+                ?.filter((item) => item.id !== Number(id))
+                ?.map((item, i) => (
+                  <MomentsCard
+                    image={item.path}
+                    {...item}
+                    key={i}
+                    textureNone
+                    className="!p-0"
+                    route={false}
+                  />
+                ))}
+          </div>
+        </div>
+      )}
     </PageLayout>
   );
 };

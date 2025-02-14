@@ -2,12 +2,9 @@ import PageLayout from "@/components/layout/page-layout";
 import RegisterForm from "@/components/forms/register-form";
 import { BgTexture } from "@/components/shared";
 import { useGetStatic } from "@/query/use-get-static-words";
-import { scrollTop } from "@/lib/utils";
 
 const Register = () => {
   const { data } = useGetStatic(13, "registerData");
-
-  scrollTop();
 
   return (
     <PageLayout

@@ -3,7 +3,7 @@ import CommentCard from "@/components/shared/comment-card";
 import NotificationCard from "@/components/shared/notification-card";
 import PoemsItem from "@/components/shared/poems-item";
 import Tabs from "@/components/shared/tabs";
-import { cn, scrollTop } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { useGetPinPoems } from "@/query/use-get-pin-poems";
 import { useGetUserComments } from "@/query/use-get-user-comments";
 import { useGetUserNotifications } from "@/query/use-get-user-notifications";
@@ -28,7 +28,6 @@ const cabinetTabs = [
 const Cabinet = () => {
   const token = useAuthStore((state) => state.accessToken);
   const [active, setActive] = useState(0);
-  scrollTop(active);
 
   const name = useAuthStore((state) => state.name);
 

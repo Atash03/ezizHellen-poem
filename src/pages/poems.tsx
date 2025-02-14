@@ -1,4 +1,4 @@
-import { cn, scrollTop } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { useGetPoems } from "@/query/use-get-poems";
 import { useQueryClient } from "@tanstack/react-query";
 import { getSortPoems } from "@/lib/get-sort-data-poems";
@@ -21,8 +21,6 @@ const Poems = () => {
   const pinPoems = pinned?.pinned_poems || [];
 
   const perPage = 10;
-
-  scrollTop();
 
   const {
     sort,

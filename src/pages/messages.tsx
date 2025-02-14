@@ -6,7 +6,6 @@ import PopupComment from '@/components/shared/popup-comment';
 import PopupMessage from '@/components/shared/popup-message';
 
 import { Button } from '@/components/ui/button';
-import { scrollTop } from '@/lib/utils';
 import { useGetComments } from '@/query/use-get-comments';
 import { useGetStatic } from '@/query/use-get-static-words';
 import { useAuthStore } from '@/store/useAuthStore';
@@ -19,7 +18,6 @@ import { useMediaQuery } from 'usehooks-ts';
 
 const Messages = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  scrollTop(currentPage);
 
   const [mobComment, setMobComment] = useState(false);
   const desktop = useMediaQuery('(min-width: 768px)');

@@ -37,8 +37,6 @@ const PoemsItem = ({
   const token = useAuthStore((state) => state.accessToken);
   const [loading, setLoading] = useState(false);
 
-  console.log(audio_file?.path);
-
   const { data: staticData } = useGetStatic(3, "poemsData");
 
   const { data: pinned, refetch } = useGetPinPoems(token ? token : "");

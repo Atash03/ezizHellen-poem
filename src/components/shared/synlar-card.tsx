@@ -1,12 +1,17 @@
+import { IReviewFile } from "@/services/types/reviews.type";
 import { Button } from "../ui/button";
 import { BgTexture } from "./bg-texture";
 import { motion } from "framer-motion";
+import clsx from "clsx";
 
 type Props = {
   categ: string;
   position_author_review: string;
   review_author: string;
   btnText?: string;
+  review_text: string;
+  link: string;
+  file: IReviewFile | null;
 };
 
 const SynlarCard = ({
@@ -14,6 +19,9 @@ const SynlarCard = ({
   categ,
   review_author,
   btnText,
+  review_text,
+  link,
+  file,
 }: Props) => {
   return (
     <motion.div
@@ -37,9 +45,20 @@ const SynlarCard = ({
       <div className="flex flex-col justify-between h-full">
         <div className="text-[14px] leading-[140%] h-5 xl:mb-9">
           <h5 className="font-semibold uppercase mb-2">{review_author}</h5>
-          {/* <h6 className="text-ON_SURFACE_VAR font-medium italic">{print}</h6> */}
+          <h6 className="text-ON_SURFACE_VAR font-medium italic">
+            {review_text}
+          </h6>
         </div>
-        <Button>{btnText}</Button>
+        <Button
+          onClick={() =>
+            file
+              ? window.open(file.path, "_blank")
+              : link && window.open(link, "_blank")
+          }
+          className={clsx(link || file ? "" : "hidden")}
+        >
+          {btnText}
+        </Button>
       </div>
     </motion.div>
   );

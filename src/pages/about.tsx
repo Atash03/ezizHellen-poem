@@ -2,13 +2,11 @@ import PageLayout from "@/components/layout/page-layout";
 import { BorderImg, EllipsisBlock, InfoBlock } from "@/components/shared";
 import RombsBlock from "@/components/shared/rombs-block";
 import SectionLine from "@/components/shared/section-line";
-import { scrollTop } from "@/lib/utils";
 import { useGetAbout } from "@/query/use-get-about";
 import { useGetStatic } from "@/query/use-get-static-words";
 
 const About = () => {
   const { data } = useGetAbout();
-  scrollTop();
 
   const { data: staticWords } = useGetStatic(2, "aboutData");
 

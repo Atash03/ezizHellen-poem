@@ -3,7 +3,7 @@ import Pagination from "@/components/shared/pagination";
 import SortModal from "@/components/shared/sort-modal";
 import SynlarCard from "@/components/shared/synlar-card";
 import Tabs from "@/components/shared/tabs";
-import { cn, scrollTop } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { useGetReviews } from "@/query/use-get-reviews";
 import { useGetStatic } from "@/query/use-get-static-words";
 import { AnimatePresence } from "framer-motion";
@@ -31,8 +31,6 @@ export const tabs = [
 const Synlar = () => {
   const { data: staticWords } = useGetStatic(5, "synlarData");
   const [currentPage, setCurrentPage] = useState(1);
-
-  scrollTop(currentPage);
 
   const [active, setActive] = useState(0);
   const [searchValue, setSearchValue] = useState("");
@@ -63,11 +61,18 @@ const Synlar = () => {
       )) ??
     [];
 
-  const synlar = filteredData.filter((item) =>
-    item.position_author_review
-      .toLowerCase()
-      .includes(searchValue.toLowerCase())
-  );
+  const synlar = searchValue
+    ? filteredData.filter(
+        (item) =>
+          item.position_author_review
+            .toLowerCase()
+            .includes(searchValue.toLowerCase()) ||
+          item.review_author
+            .toLowerCase()
+            .includes(searchValue.toLowerCase()) ||
+          item.review_text.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    : filteredData.reverse();
 
   const sortData = [...filteredData].reverse();
 
@@ -80,8 +85,6 @@ const Synlar = () => {
 
   const getCat = (id: number) =>
     id === 1 ? "Synlar" : id === 2 ? "Ýatlamalar" : "Gutlaglar";
-
-  console.log(staticWords);
 
   return (
     <PageLayout title={staticWords?.[0]?.word} text={staticWords?.[1]?.word}>

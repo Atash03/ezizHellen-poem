@@ -131,12 +131,11 @@ const Carousel = React.forwardRef<
 Carousel.displayName = 'Carousel';
 
 const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  // @ts-expect-error asd
-  ({ className, innerClassName, ...props }, ref) => {
+  ({ className, ...props }, ref) => {
     const { carouselRef, orientation } = useCarousel();
 
     return (
-      <div ref={carouselRef} className={innerClassName}>
+      <div ref={carouselRef} className={className}>
         <div
           ref={ref}
           className={cn(

@@ -37,6 +37,17 @@ interface LoginBody {
   password: string;
 }
 
+interface IForgotPasswordBody {
+  email: string;
+}
+
+interface IResetPasswordBody {
+  email: string;
+  token: string;
+  password: string;
+  password_confirmation: string;
+}
+
 class PoetService {
   private URl = "https://ezizhellen.com.tm/app/api/v1/";
   private URL_TOKEN = "https://ezizhellen.com.tm/app/api/";
@@ -119,6 +130,30 @@ class PoetService {
     }
 
     return data;
+  };
+
+  forgotPassword = async (body: IForgotPasswordBody) => {
+    const res = await axios.post(`${this.URL_TOKEN}password/reset`, body, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return res;
+  };
+
+  resetPassword = async (body: IResetPasswordBody) => {
+    const res = await axios.post(
+      `${this.URL_TOKEN}password/reset/confirm`,
+      body,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return res;
   };
 
   refreshToken = async () => {

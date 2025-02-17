@@ -1,8 +1,11 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface Props {
   active: boolean;
   mobActive: boolean;
+
+  status: "forgot" | "reset" | "initial";
+  setStatus: (value: "forgot" | "reset" | "initial") => void;
 
   loginError: string;
   setLoginError: (er: string) => void;
@@ -21,10 +24,13 @@ export const useLoginStore = create<Props>((set) => ({
   active: false,
   mobActive: false,
 
-  loginError: '',
+  status: "initial",
+  setStatus: (value: "forgot" | "reset" | "initial") => set({ status: value }),
+
+  loginError: "",
   setLoginError: (er) => set({ loginError: er }),
 
-  registerError: '',
+  registerError: "",
   setRegisterError: (er) => set({ loginError: er }),
 
   loginSuccess: false,

@@ -12,18 +12,16 @@ import { useGetStatic } from "@/query/use-get-static-words";
 import { Spin } from "../shared";
 
 const formsSchema = z.object({
-  login: z.string().email("Email nädogry"),
-  password: z.string().min(8, "Açar sözi nädogry"),
+  email: z.string().email("Email nädogry").email(),
 });
 
 type FormTypes = z.infer<typeof formsSchema>;
 
-const LoginForm = () => {
-  const form = useForm({
+const ForgotPasswordForm = () => {
+  const form = useForm<FormTypes>({
     resolver: zodResolver(formsSchema),
     defaultValues: {
-      login: "",
-      password: "",
+      email: "",
     },
   });
 
@@ -33,23 +31,24 @@ const LoginForm = () => {
   const loginError = useLoginStore((state) => state.loginError);
   const setLoginError = useLoginStore((state) => state.setLoginError);
 
-  const setLoginSuccess = useLoginStore((state) => state.setLoginSuccess);
-
   const { isSubmitting, errors } = form.formState;
 
   const onSubmit = async (data: FormTypes) => {
     const body = {
-      email: data.login,
-      password: data.password,
+      email: data.email,
     };
 
     try {
-      await poetService.loginUser(body);
-
-      setLoginSuccess(true);
+      const res = await poetService.forgotPassword(body);
+      if (res?.data?.message) {
+        setStatus("reset");
+      } else {
+        setLoginError("Nasazlyk yuze cykdy");
+      }
     } catch (e) {
       console.error(e);
-      setLoginError("Loginiňiz ýa-da açar sözüňiz nädogry");
+      setLoginError("Email nädogry");
+      setTimeout(() => setLoginError(""), 3000);
     }
   };
 
@@ -60,24 +59,16 @@ const LoginForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-5 relative">
-          <h3 className="text-center font-semibold">{data?.[0]?.word}</h3>
+        <div className="flex flex-col gap-5 mt-16 relative">
+          <h3 className="text-center font-semibold">Öz emailyňyzy giriziň</h3>
 
           <div className="flex flex-col gap-6">
             <CustomField
               control={form.control}
-              name={"login"}
-              label={data?.[1]?.word}
-              placeholder={data?.[2]?.word}
-              error={errors.login}
-            />
-            <CustomField
-              type="password"
-              control={form.control}
-              name={"password"}
-              label={data?.[3]?.word}
-              placeholder={data?.[4]?.word}
-              error={errors.password}
+              name={"email"}
+              label={""}
+              placeholder={"Emailyňyzy giriziň"}
+              error={errors.email}
             />
           </div>
 
@@ -91,27 +82,22 @@ const LoginForm = () => {
             </h5>
           )}
 
-          <div className="flex flex-col gap-4 text-center">
-            <h5 className="text-16 transition-all">
-              <Link
-                onClick={() => setLoginActive(false)}
-                className="text-TERTIARY tracking-normal hover:underline-offset-4 transition-all hover:underline"
-                to="/instruction"
-              >
-                {data?.[6]?.word}
-              </Link>
-            </h5>
-            <button
-              onClick={() => setStatus("forgot")}
-              className="text-16 text-TERTIARY tracking-normal hover:underline-offset-4 transition-all hover:underline cursor-pointer"
+          <h5 className="text-16 transition-all">
+            <Link
+              onClick={() => {
+                setLoginActive(false);
+                setStatus("initial");
+              }}
+              className="text-TERTIARY tracking-normal hover:underline-offset-4 transition-all hover:underline"
+              to="/instruction"
             >
-              Açar sözi ýatdan çykdy
-            </button>
-          </div>
+              {data?.[6]?.word}
+            </Link>
+          </h5>
         </div>
       </form>
     </Form>
   );
 };
 
-export default LoginForm;
+export default ForgotPasswordForm;

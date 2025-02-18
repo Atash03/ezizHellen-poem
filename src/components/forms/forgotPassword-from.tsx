@@ -59,7 +59,7 @@ const ForgotPasswordForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-5 mt-16 relative">
+        <div className="flex flex-col gap-5 mt-16 relative px-[12px] md:px-0">
           <h3 className="text-center font-semibold">Öz emailyňyzy giriziň</h3>
 
           <div className="flex flex-col gap-6">

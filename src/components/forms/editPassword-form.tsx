@@ -63,7 +63,7 @@ const EditPasswordForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-6 relative">
+        <div className="flex flex-col gap-6 relative px-[12px]">
           {/* <h3 className="text-center font-semibold">{data?.[0]?.word}</h3> */}
 
           <div className="flex flex-col gap-3 mb-2">

@@ -25,6 +25,10 @@ const MomentsSingle = () => {
   const { id } = useParams();
   const { data } = useGetMomentsSingle(String(id));
 
+  if (!data) {
+    throw Error();
+  }
+
   useEffect(() => {
     setPath("moment");
 

@@ -7,6 +7,8 @@ const Books = () => {
   const { data: books, isPending } = useGetBooks();
   const { data: staticData } = useGetStatic(10, "booksData");
 
+  console.log(books?.forEach((book) => console.log(book)));
+
   return (
     <PageLayout
       title={staticData?.[0]?.word}
@@ -20,7 +22,7 @@ const Books = () => {
             <BookCard
               path={item.image?.path || ""}
               key={i}
-              link={item.book.path}
+              link={item.book ? item.book.path : ""}
               {...item}
             />
           ))}

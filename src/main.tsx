@@ -16,11 +16,13 @@ import Contacts from "./pages/contacts";
 import Register from "./pages/register";
 import Cabinet from "./pages/cabinet";
 import App from "./App";
+import NotFoundPage from "./components/shared/notFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <NotFoundPage />,
     children: [
       {
         path: "",

@@ -7,8 +7,6 @@ const Books = () => {
   const { data: books, isPending } = useGetBooks();
   const { data: staticData } = useGetStatic(10, "booksData");
 
-  console.log(books?.forEach((book) => console.log(book)));
-
   return (
     <PageLayout
       title={staticData?.[0]?.word}

@@ -23,9 +23,9 @@ const MomentsSingle = () => {
   const { src, setSrc } = useImageSrc();
 
   const { id } = useParams();
-  const { data } = useGetMomentsSingle(String(id));
+  const { data, isLoading, isError } = useGetMomentsSingle(String(id));
 
-  if (!data) {
+  if (isError) {
     throw Error();
   }
 
@@ -42,7 +42,7 @@ const MomentsSingle = () => {
   }, [src]);
 
   return (
-    <PageLayout title={"Pursatlar"} className="gap-8">
+    <PageLayout title={"Pursatlar"} className="gap-8" loading={isLoading}>
       <div className="relative w-full xl:h-[504px] md:h-[436px] md:shadow-bottom py-8 md:px-6">
         <BgTexture className="hidden md:block xl:bg-[url('/images/moments/moments-single-shape.svg')] md:bg-[url('/images/moments/main-med-shape.svg')] xl:moments-single-path md:moments-main-med-path" />
 
